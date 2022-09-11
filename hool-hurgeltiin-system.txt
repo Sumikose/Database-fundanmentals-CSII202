@@ -1,0 +1,275 @@
+CREATE TABLE Worker(
+	WorkerNo VARCHAR(30),
+	Name1 VARCHAR(30),
+	ShiftTime VARCHAR(30),
+	BranchNo VARCHAR(30),
+	PRIMARY KEY (WorkerNo)
+	
+);
+CREATE TABLE Branch(
+	BranchNo VARCHAR(30),
+	BranchName VARCHAR(30),
+	Location VARCHAR(30),
+	PhoneNumber INT,
+	PRIMARY KEY (BranchNo)
+);
+CREATE TABLE FoodMenu(
+	FoodNo VARCHAR(20),
+	FoodName VARCHAR(20),
+	Ports INT,
+	Price INT,
+	PRIMARY KEY (FoodNo)
+);
+CREATE TABLE Customer(
+	CustomerNo VARCHAR(30),
+	Address VARCHAR(30),
+	PhoneNumber INT,
+	PRIMARY KEY (CustomerNo)
+);
+CREATE TABLE OrderList(
+	OrderNo VARCHAR(30),
+	CustomerNo VARCHAR(30),
+	Date1 DATE,
+	FoodNo VARCHAR(30),
+	PaymentType VARCHAR(30),
+	Quantity INT,
+	PriceTotal INT,
+	DeliveryWorkerNo VARCHAR(30),
+	PRIMARY KEY (OrderNo)
+);
+CREATE TABLE DeliveryWorker(
+	DeliveryWorkerNo VARCHAR(30),
+	Name2 VARCHAR(30),
+	ShiftTime VARCHAR(30),
+	BranchNo VARCHAR(30),
+	OrderNo VARCHAR(30),
+	DeliveryCarNo VARCHAR(30),
+	PRIMARY KEY (DeliveryWorkerNo)
+	
+);
+CREATE TABLE DeliveryCar(
+	DeliveryCarNo VARCHAR(30),
+	LastFueledDay DATE,
+	BranchNo VARCHAR(30),
+	PRIMARY KEY (DeliveryCarNo),
+	FOREIGN KEY (BranchNo) REFERENCES Branch(BranchNo)
+);
+INSERT INTO Worker(WorkerNo,Name1,ShiftTime,branchNo)
+VALUES("W01","Nomio","Day","B01"),
+      ("W02","Banzaa","Night","B02"),
+      ("W03","Enhlen","Night","B03"),
+      ("W04","Jack","Day","B03");
+INSERT INTO Branch(BranchNo,BranchName,location,PhoneNumber)
+VALUES("B01","Wonder_restaurant","Chingeltei",88887070),
+      ("B02","Kiki_restaurant","Khan-Uul",99775050),
+      ("B03","Jessica_restaurant", "Sukhbaatar",99892020);
+INSERT INTO FoodMenu(FoodNo,FoodName,Ports,Price)
+VALUES("F01","Teryaki_chicken",2,20000),
+      ("F02","Steak",3,40000),
+      ("F03","Bulgogi",1,30000);
+INSERT INTO Customer(CustomerNo,Address,PhoneNumber)
+VALUES("C01","Shangrilla-1",99197088),
+      ("C02","Mahatma_Gandhi_St",95405186),
+      ("C03","Baynmongol-8",88194401);
+INSERT INTO OrderList(OrderNo,CustomerNo,Date1,FoodNo,Paymenttype,Quantity,PriceTotal,DeliveryWorkerNo)
+VALUES("OR1","C02","2021-11-17","F03","cash",2,40000,"DW2"),
+      ("OR2","C01","2021-11-24","F01","card",1,15000,"DW1");
+INSERT INTO DeliveryWorker(DeliveryWorkerNo,Name2,Shifttime,BranchNo,OrderNo,DeliverycarNo)
+VALUES("de1","Ochirsukh","day","B01","OR2","UB01"),
+      ("de2","Ganchimeg","night","B02","OR3","UB02"),
+      ("de3","Bymbaa","night","B03","OR1","UB03");
+INSERT INTO DeliveryCar(DeliverycarNo,lastfueledday,BranchNo)
+VALUES("UB01","2021-11-24","B01"),
+      ("UB02","2021-11-13","B02"),
+      ("UB03","2021-11-21","B03");
+
+
+
+
+
+
+
+
+CREATE TABLE Worker(
+	WorkerNo VARCHAR(30),
+	fName VARCHAR(30),
+	lName VARCHAR(30),
+	ShiftTime VARCHAR(30),
+	BranchNo VARCHAR(30),
+	Salary INT,
+	PRIMARY KEY (WorkerNo)
+	
+);
+CREATE TABLE Branch(
+	BranchNo VARCHAR(30),
+	BranchName VARCHAR(30),
+	Location VARCHAR(30),
+	PhoneNumber INT,
+	PRIMARY KEY (BranchNo)
+);
+CREATE TABLE FoodMenu(
+	FoodNo VARCHAR(20),
+	FoodName VARCHAR(20),
+	Ports INT,
+	Price INT,
+	OrderNo VARCHAR(20),
+	WorkerNo VARCHAR(20),
+	PRIMARY KEY (FoodNo)
+);     
+CREATE TABLE Customer(
+	CustomerNo VARCHAR(30),
+	Address VARCHAR(30),
+	PhoneNumber INT,
+	Comment1 VARCHAR(30),
+	PRIMARY KEY (CustomerNo)
+);
+CREATE TABLE OrderList(
+	OrderNo VARCHAR(30),
+	CustomerNo VARCHAR(30),
+	Date1 DATE,
+	FoodNo VARCHAR(30),
+	PaymentType VARCHAR(30),
+	Quantity INT,
+	Price INT,
+	DeliveryWorkerNo VARCHAR(30),
+	PRIMARY KEY (OrderNo)
+);
+CREATE TABLE DeliveryWorker(
+	DeliveryWorkerNo VARCHAR(30),
+	fName VARCHAR(30),
+	ShiftTime VARCHAR(30),
+	BranchNo VARCHAR(30),
+	OrderNo VARCHAR(30),
+	DeliveryCarNo VARCHAR(30),
+	PRIMARY KEY (DeliveryWorkerNo)
+	
+);
+CREATE TABLE DeliveryCar(
+	DeliveryCarNo VARCHAR(30),
+	LastFueledDay DATE,
+	BranchNo VARCHAR(30),
+	Type1 VARCHAR(30),
+	DeliveryWorkerNo VARCHAR(30),
+	PRIMARY KEY (DeliveryCarNo),
+	FOREIGN KEY (BranchNo) REFERENCES Branch(BranchNo)
+);
+INSERT INTO Worker(WorkerNo,fName,lName,ShiftTime,branchNo,Salary)
+VALUES("W01","Nomio","Nasaa","Day","B01",880000),
+      ("W02","Banzaa","Sonom","Night","B02",750000),
+      ("W03","Enhlen","Gansukh","Night","B03",720000),
+      ("W04","Janchivdorj","Batsukh","Day","B04",800000),
+      ("W05","Munkhgegeen","Tumurbaatar","Night","B05",700000),
+      ("W06","Sarnai","Batsukh","Night","B06",750000),
+      ("W07","Oyungerel","Ragchaa","Day","B07",730000);
+INSERT INTO Branch(BranchNo,BranchName,location,PhoneNumber)
+VALUES("B01","Wonder_restaurant","Chingeltei",88887070),
+      ("B02","Kiki_restaurant","Khan-Uul",99775050),
+      ("B03","Jessica_restaurant","Nalaikh",99892020),
+      ("B04","Yuna","Khan-Uul",99884401),
+      ("B05","Arig_Anya","Khan-Uul",99702020),
+      ("B06","Nomad_restaurant","Sukhbaatar",70703535),
+      ("B07","Bng_chicken","Khan-Uul",77234444);
+INSERT INTO FoodMenu(FoodNo,FoodName,Ports,Price,OrderNo,WorkerNo)
+VALUES("F01","Teriyaki_chicken",2,20000,"OR2","W01"),
+      ("F02","Steak",3,40000,"OR4","W02"),
+      ("F03","Bulgogi",1,30000,"OR1","W03"),
+      ("F04","Tempura",2,10000,"OR3","W04"),
+      ("F05","Miso_Ramen",1,17500,"OR3","W04"),
+      ("F06","Tsuivan",2,15000,"OR2","W01"),
+      ("F07","Chiken_dogbuggi",4,40000,"OR2","W01");
+INSERT INTO Customer(CustomerNo,Address,PhoneNumber,Comment1)
+VALUES("C01","Shangrilla-1",99197088,""),
+      ("C02","Mahatma_Gandhi_St",95405186,""),
+      ("C03","Baynmongol-8",88194401,""),
+      ("C04","Altargana-54",88194401,""),
+      ("C05","Tsetsegun-28",88194401,""),
+      ("C06","Narkhan_57_28",88194401,""),
+      ("C07","Japantown_C1",88194401,"");
+INSERT INTO OrderList(OrderNo,CustomerNo,Date1,FoodNo,Paymenttype,Quantity,Price,DeliveryWorkerNo)
+VALUES("OR1","C01","2021-11-17","F03","cash",2,40000,"DW2"),
+      ("OR2","C02","2021-11-18","F01","card",1,15000,"DW1"),
+      ("OR3","C03","2021-11-19","F04","card",3,15000,"DW1"),
+      ("OR4","C04","2021-11-20","F05","card",4,15000,"DW1"),
+      ("OR5","C05","2021-11-21","F06","cash",1,15000,"DW1"),
+      ("OR6","C06","2021-11-22","F07","card",2,15000,"DW1"),
+      ("OR7","C07","2021-11-23","F03","cash",1,15000,"DW1");
+INSERT INTO DeliveryWorker(DeliveryWorkerNo,fName,Shifttime,BranchNo,OrderNo,DeliverycarNo)
+VALUES("DW1","Ochirsukh","day","B01","OR2","UIH01"),
+      ("DW2","Ganchimeg","Night","B02","OR3","UKB02"),
+      ("DW3","Bymbaa","Day","B03","OR1","UNCH03"),
+      ("DW4","Nomio","Night","B03","OR1","UNKH04"),
+      ("DW5","Khulan","Day","B03","OR1","UTI05"),
+      ("DW6","Javkhlan","Night","B03","OR1","URF06"),
+      ("DW7","Khaliun","Night","B03","OR1","UOL07");
+INSERT INTO DeliveryCar(DeliverycarNo,lastfueledday,BranchNo,Type1,DeliveryWorkerNo)
+VALUES("UIH01","2021-11-24","B01","Toyota_Prius","DW1"),
+      ("UKB02","2021-11-13","B02","Honda_Accord","DW2"),
+      ("UNCH03","2021-11-21","B03","Hyrecar","DW3"),
+      ("UNKH04","2021-11-21","B03","Turo","DW4"),
+      ("UTI05","2021-11-21","B04","Riders_Share","DW5"),
+      ("URF06","2021-11-21","B05","Turo","DW6"),
+      ("UOL07","2021-11-21","B06","Hyrecar","DW7");
+
+
+
+
+
+-- Ra onoltoi holbootoigoor songgoson system deeree 10 asuult zohioh. RA undsen : uildel, 5 oor JOIN ashiglaj bolohoor 10 asuult
+-- Undsen 5 uildl RA 
+-- 1
+Selection ашиглаад FoodMenu хүснэгтээс 20000-аас дээш үнэтэй хоолны мэдээллийг мөн багана сонгох үйлдэл ашиглаад branchNo-ийг харуулна уу.
+-- 2
+Hoolnii tsesnii husnegtess ner bagst uniin haruulna uu.
+Нэгдэл үйлдel zahialga hoolniii tses 2
+
+-- 3
+Яалгавар үйлдэл ашиглаад ямар нэгэн салбар хариуцдаггүй ажилчны ажилчны дугаарын харуулна уу.
+-- 4
+Огтлолцол үйлдэл ашиглаад deliveryworker ч байгаа worker ч байгаа хотыг олно.
+orderlist foodmenu adilhn hoolnii neriig gargana uu
+-- 5
+Үржих үйлдэл ашиглаад teryaki chicken zahialsn uilchluulegchdiin utasnii dugaar geriin haygiig haruul
+-- 6
+theta JOIN
+hoolnii une ni ajiltniii tsalingaas baga baih hoolnii medeelel haruulna 
+equijoin
+hool ajiltan 2iig holbochino 2uuland bga medeellig gargana
+hool bolon zahialgiin husnegtiig holbood hoolnii ner hoolnii bagts une zahialsn odriig gragana uu. 
+orderlist husnegtees 2021 oni 1r sariin 1 nees hoish zahialga ogsn hereglegchiin medeeellig joinoor holboj baina
+-- 7
+NATURAL JOIN
+zahialga customer uilchluulegchdin geriin hayg utasnii dugaar hoolnii dugaar garga
+Ogloonii eeljin dahi ajiltnuudiin buh medeellig garga
+-- 8
+Khan-Uul dahi salbariin ajiltnuuidin medeelliig garga
+-- 9
+hoolnii menu husnegtees Bu gej ehelsn mon 1 toroltei hoolniii medeellig garga
+-- 10
+Humuusiin hamgiin ih zahialsn hoolnii medeellig garga
+
+-- SQL, DML iin onoltoi holbootoi songoson system deeree 10 asuult zohiono uu. DML-iin undsen 4 uildluud, 2 husnegt holboh, 3 husnegt holboh ashiglagdahuits niit 10 asuult
+-- 1
+10000 aas deesh unetei hoolnii medeellig gargana uu
+iim torliin bolon iim unetei hurgeltiin mashinii medeellig garga
+-- 2
+Steak zahialsn hereglegchiin medeellig haruulna uu
+-- 3
+FoodMenu husnegtees Teryaki chicken ii medeelligg ustgana uuu
+-- 4
+FoodMenu husnegt ruu Special_Menu nertei 3 hunii portstoi 25000 unetei hooliig nemne uu
+-- 5
+bulgogi hoolnii uniig 13 huviar nemegduulne uu.
+-- 6
+Khan-Uul salbart ajilladag ajilchdin medeellig salbariin ner bairshiltai ni gargana uu
+-- 7
+ub01 hurgeltiin mashinii dugaartai ajilchnii ali eeljind gardg ali salbart ajilladgiig garga
+ter dugaartai mashinii hurgelt hiisn hoolni neriig garga
+-- 8 
+Hamgiin unetei hool zahialsn uilchluulegchiin dugaar, ner, hoolnii dugaar, hoolnii ports, uniiin medeellig gargana uu.
+-- 9 
+Hamgiin olon portstoi hoolnii medeellig garga
+-- 10
+salbar tus bur heden ajilchintai bolon hmgiin hymd hool, hamgiin unetei hool, dundj uniin medeellig haruulna uu
+-- 2 husnegt holboh
+2020 10.25 zahialga hiisn uilchluulegchdiin medeellig haruulna uu
+
